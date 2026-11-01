@@ -1,6 +1,6 @@
-import Hero from "./components/Hero";
+import hero from "./components/hero";
 import { pokemons } from "./data/pokemons";
 
 export default function App() {
-  return <Hero pokemons={pokemons} favouritesCount={0} />;
+  return <hero pokemons={pokemons} favouritesCount={0} />;
 }

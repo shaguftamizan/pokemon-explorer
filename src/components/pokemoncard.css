@@ -1,0 +1,154 @@
+/* ---------- Card ---------- */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 0.75rem;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  color: var(--color-deep);
+  transition: border-color 0.15s ease;
+}
+
+.card:hover {
+  border-color: var(--type);
+}
+
+.card__media {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, var(--type) 14%, #fff);
+}
+
+.card__sprite {
+  width: 80%;
+  height: auto;
+  image-rendering: pixelated;
+}
+
+.card__name {
+  margin: 0.25rem 0 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.card__type {
+  align-self: center;
+  padding: 0.15rem 0.85rem;
+  border-radius: 999px;
+  background: var(--type);
+  color: var(--type-ink);
+  font-size: 0.8rem;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.card__stats {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+/* ---------- Favourite button ---------- */
+.card__fav {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-red);
+  cursor: pointer;
+}
+
+.card__fav-icon {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.card__fav:not(.is-active) .card__fav-icon {
+  filter: grayscale(1) opacity(0.5);
+}
+
+.card__fav.is-active .card__fav-icon {
+  animation: fav-pop 0.3s ease-out;
+}
+
+.card__fav:focus-visible {
+  outline: 3px solid var(--color-blue);
+  outline-offset: 2px;
+}
+
+@keyframes fav-pop {
+  0%   { transform: scale(0.6); }
+  60%  { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+/* ---------- Game-style stat bars ---------- */
+.stat-bar {
+  display: grid;
+  grid-template-columns: 1.8rem minmax(0, 1fr) 2rem;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+}
+
+.stat-bar--hp     { --bar: #58b947; }
+.stat-bar--attack { --bar: var(--color-orange); }
+
+.stat-bar__label {
+  font-weight: 700;
+}
+
+.stat-bar__value {
+  font-weight: 700;
+  text-align: right;
+}
+
+.stat-bar__track {
+  height: 0.8rem;
+  overflow: hidden;
+  border: 0.15rem solid var(--color-deep);
+  border-radius: 0.25rem;
+  background: #e8ecee;
+}
+
+.stat-bar__fill {
+  height: 100%;
+  background-color: var(--bar);
+  /* thin vertical gaps give the segmented "game" look */
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent calc(0.45rem - 2px),
+    rgba(255, 255, 255, 0.55) calc(0.45rem - 2px),
+    rgba(255, 255, 255, 0.55) 0.45rem
+  );
+  box-shadow: inset 0 0.15rem 0 rgba(255, 255, 255, 0.35);
+  animation: bar-fill 0.8s ease-out both;
+}
+
+@keyframes bar-fill {
+  from { width: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stat-bar__fill,
+  .card__fav.is-active .card__fav-icon {
+    animation: none;
+  }
+}

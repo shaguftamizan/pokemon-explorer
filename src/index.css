@@ -8,6 +8,7 @@
   --color-deep: #084152;
   --color-pale: #eddd82;
   --color-sand: #ebb463;
+  --color-border: #e2e5e7;
 
   --font-main: "Quantico", "Noto Sans JP", sans-serif;
   --font-jp: "Noto Sans JP", "Quantico", sans-serif;
@@ -23,6 +24,6 @@ body {
   margin: 0;
   font-family: var(--font-main);
   font-weight: 400;
-  background: var(--color-deep);
-  color: var(--color-pale);
+  background: #fff;
+  color: var(--color-deep);
 }

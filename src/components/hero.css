@@ -3,7 +3,7 @@
   padding: 2.5rem 1.25rem 3rem;
   text-align: center;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 0%, var(--color-blue) 0%, var(--color-deep) 65%);
+  background: #ffffff;
 }
 
 .hero__slogan {
@@ -25,9 +25,26 @@
   filter: drop-shadow(0 4px 0 rgba(0, 0, 0, 0.25));
 }
 
+.hero__title {
+  margin: 1.25rem 0 0;
+  font-weight: 700;
+  font-size: clamp(2rem, 8vw, 3rem);
+  line-height: 1.1;
+  color: var(--color-deep);
+}
+
+.hero__subtitle {
+  max-width: 36rem;
+  margin: 0.75rem auto 0;
+  font-style: italic;
+  font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+  line-height: 1.5;
+  color: var(--color-blue);
+}
+
 .hero__body {
   max-width: 960px;
-  margin: 2.5rem auto 0;
+  margin: 1rem auto 0;
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
@@ -40,20 +57,24 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 6.5rem));
   gap: 0.75rem;
+  justify-content: center;
 }
 
 .stat {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 0.25rem;
-  padding: 0.9rem 0.5rem;
-  border-bottom: 0.4rem solid var(--accent);
+  gap: 0.35rem;
+  aspect-ratio: 1;
+  padding: 0.5rem;
+  border-bottom: 0.3rem solid var(--accent);
   border-radius: 0.5rem;
   background: var(--color-pale);
   color: var(--color-deep);
+  text-align: center;
 }
 
 .stat--orange { --accent: var(--color-orange); }
@@ -62,13 +83,13 @@
 
 .stat__value {
   font-weight: 700;
-  font-size: clamp(2rem, 9vw, 3.25rem);
+  font-size: clamp(1.5rem, 7vw, 2rem);
   line-height: 1;
 }
 
 .stat__label {
   font-style: italic;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   line-height: 1.2;
 }
 
@@ -85,7 +106,7 @@
   justify-content: center;
   font-size: clamp(13px, 3.8vw, 18px); /* everything inside scales in em */
   width: 16em;
-  height: 19em;
+  height: 15.5em;
 }
 
 .catch__caption {
@@ -141,7 +162,7 @@
   top: 50%;
   border-top-width: 0.2em;
   border-radius: 0 0 5.5em 5.5em;
-  background: var(--color-pale);
+  background: var(--color-white);
 }
 
 .pokeball__button {
@@ -226,7 +247,7 @@
 @keyframes sprite-catch {
   0% {
     opacity: 0;
-    transform: translateY(-7.5em) scale(0.7);
+    transform: translateY(-6em) scale(0.7);
     filter: brightness(1) invert(0) drop-shadow(0 0 0 transparent);
   }
   6%, 12% {
@@ -297,36 +318,16 @@
 
 /* ---------- Desktop ---------- */
 @media (min-width: 768px) {
-  .hero {
+   .hero {
     padding: 3.5rem 2rem 4rem;
   }
 
   .hero__body {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 3fr 3fr;
     gap: 3rem;
   }
-
   .hero__stats {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .stat {
-    flex-direction: row;
-    align-items: center;
-    gap: 1.25rem;
-    padding: 1rem 1.5rem;
-    border-bottom: 0;
-    border-left: 0.5rem solid var(--accent);
-    text-align: left;
-  }
-
-  .stat__value {
-    min-width: 3ch;
-  }
-
-  .stat__label {
-    font-size: 1rem;
+    transform: translateY(3rem);
   }
 }
 
@@ -345,7 +346,7 @@
 
   .scene__sprite {
     opacity: 1;
-    transform: translateY(-7.5em);
+    transform: translateY(-6em);
   }
 
   .spark,

@@ -52,8 +52,8 @@ export default function Hero({ pokemons, favouritesCount = 0 }) {
   const typeCount = new Set(pokemons.map((p) => p.type)).size;
 
   const stats = [
-    { value: pokemons.length, label: "Pokémon in the explorer", accent: "orange" },
-    { value: typeCount, label: "Different types", accent: "red" },
+    { value: pokemons.length, label: "Pokémons", accent: "orange" },
+    { value: typeCount, label: "Types", accent: "red" },
     { value: favouritesCount, label: "Favourites", accent: "sand" },
   ];
 
@@ -64,6 +64,12 @@ export default function Hero({ pokemons, favouritesCount = 0 }) {
       </h1>
 
       <img className="hero__logo" src={LOGO_URL} alt="Pokémon" />
+
+      <h2 className="hero__title">Pokedex</h2>
+      <p className="hero__subtitle">
+        Your personal Pokemon explorer and library. View Pokemon stats and keep
+            track of your favourites!
+      </p>
 
       <div className="hero__body">
         <ul className="hero__stats">

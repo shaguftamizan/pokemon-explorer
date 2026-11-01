@@ -1,0 +1,229 @@
+/* ---------- Layout ---------- */
+.explorer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  color: var(--color-deep);
+}
+
+/* ---------- Type filters (left) ---------- */
+.filters {
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+}
+
+.filters__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.filters__title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.filters__clear {
+  padding: 0;
+  font: inherit;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--color-blue);
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.filters__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.type-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.4rem 0.85rem;
+  font: inherit;
+  font-weight: 700;
+  color: var(--color-deep);
+  background: color-mix(in srgb, var(--type) 14%, #fff);
+  border: 2px solid var(--type);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.type-chip.is-active {
+  background: var(--type);
+  color: var(--type-ink);
+}
+
+.type-chip__count {
+  font-size: 0.85em;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ---------- Toolbar: search (center) + sort (right) ---------- */
+.toolbar {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.9rem;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-blue);
+}
+
+.search:focus-within {
+  border-color: var(--color-blue);
+  outline: 2px solid var(--color-blue);
+}
+
+.search__icon {
+  flex: none;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.search input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.65rem 0;
+  font: inherit;
+  color: var(--color-deep);
+  background: transparent;
+  border: 0;
+  outline: 0;
+}
+
+.sort {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-self: end;
+  font-style: italic;
+}
+
+.sort select {
+  padding: 0.5rem 0.75rem;
+  font: inherit;
+  font-style: normal;
+  color: var(--color-deep);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+}
+
+.sort select:focus-visible,
+.type-chip:focus-visible,
+.filters__clear:focus-visible,
+.empty__button:focus-visible {
+  outline: 3px solid var(--color-blue);
+  outline-offset: 2px;
+}
+
+/* ---------- Card grid ---------- */
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.grid__status {
+  margin: 1.5rem 0 0;
+  text-align: center;
+  font-style: italic;
+  color: var(--color-blue);
+}
+
+.empty {
+  padding: 3rem 1rem;
+  text-align: center;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+}
+
+.empty p {
+  margin: 0 0 1rem;
+  font-weight: 700;
+}
+
+.empty__button {
+  padding: 0.55rem 1.1rem;
+  font: inherit;
+  font-weight: 700;
+  color: #fff;
+  background: var(--color-blue);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* ---------- Responsive ---------- */
+@media (min-width: 560px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .toolbar {
+    grid-template-columns: 1fr minmax(0, 26rem) 1fr;
+    align-items: center;
+  }
+
+  .search { grid-column: 2; }
+  .sort   { grid-column: 3; }
+}
+
+@media (min-width: 1024px) {
+  .explorer {
+    grid-template-columns: 14rem minmax(0, 1fr);
+    align-items: start;
+    gap: 2rem;
+  }
+
+  .filters {
+    position: sticky;
+    top: 1rem;
+  }
+
+  .filters__list {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  .type-chip {
+    width: 100%;
+  }
+
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

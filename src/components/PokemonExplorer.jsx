@@ -133,9 +133,26 @@ export default function PokemonExplorer({ pokemons, favourites, onToggleFavourit
             />
           </label>
 
-          <label className="sort">
+        <div className="type-select">
+            <select
+                aria-label="Filter by type"
+                value={activeTypes[0] ?? "all"}
+                onChange={(e) =>
+                        setActiveTypes(e.target.value === "all" ? [] : [e.target.value])
+                }
+            >
+                <option value="all">All types</option>
+                    {types.map((type) => (
+                        <option key={type} value={type}>
+                            {type} ({typeCounts[type]})
+                        </option>
+                        ))}
+            </select>
+        </div>
+
+        <label className="sort">
             <span>Sort by</span>
-            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+            <select aria-label="Sort by" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
               {Object.entries(SORTS).map(([key, { label }]) => (
                 <option key={key} value={key}>
                   {label}
@@ -163,7 +180,7 @@ export default function PokemonExplorer({ pokemons, favourites, onToggleFavourit
 
             {hasMore ? (
               <div ref={sentinelRef} className="grid__status">
-                Loading more Pokémon…
+                Loading more Pokémon(s)…
               </div>
             ) : (
               <p className="grid__status">That's all {results.length} Pokémon.</p>
@@ -171,7 +188,7 @@ export default function PokemonExplorer({ pokemons, favourites, onToggleFavourit
           </>
         ) : (
           <div className="empty">
-            <p>No Pokémon match your search.</p>
+            <p>No Pokémon(s) match your search.</p>
             <button type="button" className="empty__button" onClick={clearAll}>
               Clear search and filters
             </button>

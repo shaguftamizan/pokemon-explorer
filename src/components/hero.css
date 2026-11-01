@@ -327,7 +327,13 @@
     gap: 3rem;
   }
   .hero__stats {
-    transform: translateY(3rem);
+    transform: translate(7rem, 3rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .catch {
+    order: -1; /* pokeball above the BANs */
   }
 }
 

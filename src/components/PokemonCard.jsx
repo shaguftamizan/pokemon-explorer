@@ -4,7 +4,7 @@ import "./pokemoncard.css";
 
 // Paste a direct image URL here (or an imported file from src/assets) to use your own
 // favourite icon. While this is empty, a built-in heart is shown instead.
-const FAV_ICON_URL = "";
+const FAV_ICON_URL = "https://res.cloudinary.com/dmryieb7p/image/upload/v1793512848/pokemon-explorer/favourite-icon_vfu2bh.svg";
 
 function FavouriteIcon() {
   if (FAV_ICON_URL) {

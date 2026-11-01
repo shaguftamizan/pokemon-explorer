@@ -125,7 +125,8 @@
   font-style: italic;
 }
 
-.sort select {
+.sort select,
+.type-select select {
   padding: 0.5rem 0.75rem;
   font: inherit;
   font-style: normal;
@@ -136,6 +137,7 @@
 }
 
 .sort select:focus-visible,
+.type-select select:focus-visible,
 .type-chip:focus-visible,
 .filters__clear:focus-visible,
 .empty__button:focus-visible {
@@ -225,5 +227,41 @@
 
   .grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Mobile type dropdown ---------- */
+.type-select {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  .filters {
+    display: none;
+  }
+
+  .toolbar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .search {
+    grid-column: 1 / -1;
+  }
+
+  .type-select {
+    display: block;
+  }
+
+  .sort {
+    justify-self: stretch;
+  }
+
+  .sort span {
+    display: none;
+  }
+
+  .type-select select,
+  .sort select {
+    width: 100%;
   }
 }

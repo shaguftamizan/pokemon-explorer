@@ -1,0 +1,355 @@
+/* ---------- Layout ---------- */
+.hero {
+  padding: 2.5rem 1.25rem 3rem;
+  text-align: center;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 0%, var(--color-blue) 0%, var(--color-deep) 65%);
+}
+
+.hero__slogan {
+  margin: 0;
+  font-family: var(--font-jp);
+  font-weight: 900;
+  font-size: clamp(1.6rem, 7vw, 3.5rem);
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  color: var(--color-pale);
+  text-shadow: 3px 3px 0 var(--color-red), 6px 6px 0 rgba(0, 0, 0, 0.25);
+}
+
+.hero__logo {
+  display: block;
+  width: clamp(200px, 55vw, 400px);
+  height: auto;
+  margin: 1.5rem auto 0;
+  filter: drop-shadow(0 4px 0 rgba(0, 0, 0, 0.25));
+}
+
+.hero__body {
+  max-width: 960px;
+  margin: 2.5rem auto 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* ---------- Stats (the "BANs") ---------- */
+.hero__stats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.9rem 0.5rem;
+  border-bottom: 0.4rem solid var(--accent);
+  border-radius: 0.5rem;
+  background: var(--color-pale);
+  color: var(--color-deep);
+}
+
+.stat--orange { --accent: var(--color-orange); }
+.stat--red    { --accent: var(--color-red); }
+.stat--sand   { --accent: var(--color-sand); }
+
+.stat__value {
+  font-weight: 700;
+  font-size: clamp(2rem, 9vw, 3.25rem);
+  line-height: 1;
+}
+
+.stat__label {
+  font-style: italic;
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+
+/* ---------- Catch scene ---------- */
+.catch {
+  --cycle: 9s;
+  justify-self: center;
+}
+
+.scene {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-size: clamp(13px, 3.8vw, 18px); /* everything inside scales in em */
+  width: 16em;
+  height: 19em;
+}
+
+.catch__caption {
+  min-height: 1.6em;
+  margin: 1rem 0 0;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--color-sand);
+  opacity: 0;
+  animation: caption var(--cycle) infinite ease-in-out;
+}
+
+/* ---------- Pokeball ---------- */
+.pokeball {
+  position: relative;
+  width: 11em;
+  height: 11em;
+  border-radius: 50%;
+  filter: drop-shadow(0 0.6em 0.5em rgba(0, 0, 0, 0.35));
+  animation: shake var(--cycle) infinite ease-in-out;
+}
+
+.pokeball__half {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  border: 0.4em solid var(--color-deep);
+}
+
+.pokeball__top {
+  top: 0;
+  border-bottom-width: 0.2em;
+  border-radius: 5.5em 5.5em 0 0;
+  background: var(--color-red);
+  transform-origin: 0 100%; /* hinge on the left */
+  animation: lid var(--cycle) infinite ease-in-out;
+}
+
+.pokeball__top::after {
+  content: "";
+  position: absolute;
+  top: 0.9em;
+  left: 1.3em;
+  width: 2.2em;
+  height: 1em;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  transform: rotate(-30deg);
+}
+
+.pokeball__bottom {
+  top: 50%;
+  border-top-width: 0.2em;
+  border-radius: 0 0 5.5em 5.5em;
+  background: var(--color-pale);
+}
+
+.pokeball__button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3.6em;
+  height: 3.6em;
+  margin: -1.8em 0 0 -1.8em;
+  border: 0.5em solid var(--color-deep);
+  border-radius: 50%;
+  background: var(--color-pale);
+  animation: button-lit var(--cycle) infinite ease-in-out;
+}
+
+.pokeball__button::after {
+  content: "";
+  position: absolute;
+  inset: 0.3em;
+  border: 0.15em solid var(--color-sand);
+  border-radius: 50%;
+}
+
+.pokeball__light {
+  position: absolute;
+  top: -3em;
+  left: 0.4em;
+  right: 0.4em;
+  height: calc(50% + 3em);
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    #fff 0%,
+    #ffc2b3 25%,
+    rgba(205, 82, 65, 0.6) 50%,
+    transparent 72%
+  );
+  opacity: 0;
+  animation: light var(--cycle) infinite ease-in-out;
+}
+
+.pokeball__glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 3em 1em var(--color-pale);
+  opacity: 0;
+  animation: glow var(--cycle) infinite ease-in-out;
+}
+
+/* ---------- Pokémon sprite ---------- */
+.scene__sprite {
+  position: absolute;
+  left: 50%;
+  bottom: 2em;
+  width: 7em;
+  height: 7em;
+  margin-left: -3.5em;
+  image-rendering: pixelated;
+  opacity: 0;
+  animation: sprite-catch var(--cycle) infinite ease-in-out;
+}
+
+/* ---------- Sparkles ---------- */
+.spark {
+  position: absolute;
+  font-size: 1.8em;
+  line-height: 1;
+  color: var(--color-pale);
+  opacity: 0;
+  animation: spark var(--cycle) infinite ease-in-out;
+}
+
+.spark--1 { bottom: 10em;   left: 12%; }
+.spark--2 { bottom: 11.5em; right: 15%; color: var(--color-sand); animation-delay: 0.1s; }
+.spark--3 { bottom: 1em;    left: 4%;   color: var(--color-orange); animation-delay: 0.2s; }
+.spark--4 { bottom: 4em;    right: 2%;  animation-delay: 0.15s; }
+
+/* ---------- Keyframes (one 9s sequence) ----------
+   0-6%   Pokémon appears        8-18%  lid opens, Pokémon turns to red light
+   12-32% Pokémon is pulled in   32-40% lid closes
+   42-70% ball shakes 3 times    72-92% button lights up, sparkles, "Gotcha!" */
+@keyframes sprite-catch {
+  0% {
+    opacity: 0;
+    transform: translateY(-7.5em) scale(0.7);
+    filter: brightness(1) invert(0) drop-shadow(0 0 0 transparent);
+  }
+  6%, 12% {
+    opacity: 1;
+    transform: translateY(-7.5em) scale(1);
+    filter: brightness(1) invert(0) drop-shadow(0 0 0 transparent);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-7.5em) scale(1);
+    filter: brightness(0) invert(1) drop-shadow(0 0 0.8em var(--color-red));
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-2em) scale(0.15);
+    filter: brightness(0) invert(1) drop-shadow(0 0 0.8em var(--color-red));
+  }
+  32%, 100% {
+    opacity: 0;
+    transform: translateY(0) scale(0);
+    filter: brightness(0) invert(1) drop-shadow(0 0 0.8em var(--color-red));
+  }
+}
+
+@keyframes lid {
+  0%, 8%    { transform: rotate(0deg); }
+  16%, 32%  { transform: rotate(-42deg); }
+  40%, 100% { transform: rotate(0deg); }
+}
+
+@keyframes light {
+  0%, 10%   { opacity: 0; }
+  16%, 32%  { opacity: 1; }
+  38%, 100% { opacity: 0; }
+}
+
+@keyframes shake {
+  0%, 42%, 50%, 60%, 70%, 100% { transform: rotate(0deg); }
+  44%, 54%, 64% { transform: rotate(-14deg); }
+  47%, 57%, 67% { transform: rotate(12deg); }
+}
+
+@keyframes button-lit {
+  0%, 72%, 94%, 100% {
+    background: var(--color-pale);
+    box-shadow: 0 0 0 0 transparent;
+  }
+  76%, 86% {
+    background: #fff;
+    box-shadow: 0 0 1em 0.5em var(--color-pale), 0 0 2.5em 1em var(--color-orange);
+  }
+}
+
+@keyframes glow {
+  0%, 72%, 94%, 100% { opacity: 0; transform: scale(1); }
+  80% { opacity: 0.8; transform: scale(1.12); }
+}
+
+@keyframes spark {
+  0%, 72%, 92%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  80% { opacity: 1; transform: scale(1) rotate(90deg); }
+}
+
+@keyframes caption {
+  0%, 70%, 98%, 100% { opacity: 0; transform: translateY(0.5em); }
+  78%, 92% { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Desktop ---------- */
+@media (min-width: 768px) {
+  .hero {
+    padding: 3.5rem 2rem 4rem;
+  }
+
+  .hero__body {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .hero__stats {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .stat {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 0;
+    border-left: 0.5rem solid var(--accent);
+    text-align: left;
+  }
+
+  .stat__value {
+    min-width: 3ch;
+  }
+
+  .stat__label {
+    font-size: 1rem;
+  }
+}
+
+/* ---------- Reduced motion: static ball, Pokémon visible ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .pokeball,
+  .pokeball__top,
+  .pokeball__button,
+  .pokeball__light,
+  .pokeball__glow,
+  .scene__sprite,
+  .spark,
+  .catch__caption {
+    animation: none;
+  }
+
+  .scene__sprite {
+    opacity: 1;
+    transform: translateY(-7.5em);
+  }
+
+  .spark,
+  .catch__caption {
+    display: none;
+  }
+}

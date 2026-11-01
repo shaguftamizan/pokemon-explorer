@@ -1,0 +1,28 @@
+/* Quantico (all four styles) + Noto Sans JP Black, because Quantico has no Japanese glyphs */
+@import url("https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans+JP:wght@900&display=swap");
+
+:root {
+  --color-orange: #ee8329;
+  --color-red: #cd5241;
+  --color-blue: #2c7392;
+  --color-deep: #084152;
+  --color-pale: #eddd82;
+  --color-sand: #ebb463;
+
+  --font-main: "Quantico", "Noto Sans JP", sans-serif;
+  --font-jp: "Noto Sans JP", "Quantico", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  font-weight: 400;
+  background: var(--color-deep);
+  color: var(--color-pale);
+}

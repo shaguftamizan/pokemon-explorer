@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { spriteUrl } from "../data/pokemons";
-import "./Hero.css";
+import "./hero.css";
 
 const LOGO_URL =
   "https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg";
@@ -43,7 +43,7 @@ function PokeballScene({ pokemons }) {
         <span className="spark spark--4" aria-hidden="true">✦</span>
       </div>
 
-      <p className="catch__caption">Gotcha! {pokemon.name} was caught!</p>
+      <p className="catch__caption">Gotcha!</p>
     </div>
   );
 }

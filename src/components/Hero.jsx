@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { spriteUrl } from "../data/pokemons";
+import { spriteUrl } from "./data/pokemons";
 import "./hero.css";
 
 const LOGO_URL =
